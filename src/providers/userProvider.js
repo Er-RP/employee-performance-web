@@ -1,4 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
+import { get } from "../network/api";
+import { GIL } from "../utils/localStorage";
 
 const initialState = {
   loading: true,
@@ -13,21 +15,43 @@ export function useUser() {
 }
 
 export function UserProvider({ children }) {
+  const UID = GIL("UID");
   const [currentUser, setCurrentUser] = useState(initialState);
-  useEffect(() => {
-    const timeOut = setTimeout(() => {
+  const getUser = async () => {
+    try {
+      const res = await get("/users/me");
+      console.log(res);
+      if (res && res.success > 0) {
+        setCurrentUser({
+          loading: false,
+          user: res.user,
+          error: null,
+        });
+      }
+    } catch (error) {
+      console.log(error);
       setCurrentUser({
         loading: false,
-        user: "RP",
-        error: null,
+        user: null,
+        error: error?.respose?.data || "Error occurred",
       });
-    }, 2000);
-    return () => {
-      clearTimeout(timeOut);
-    };
-  }, [currentUser]);
+    }
+  };
+  useEffect(() => {
+    if (!UID) {
+      setCurrentUser({
+        loading: false,
+        user: null,
+        error: "You must be logged in",
+      });
+    } else {
+      getUser();
+    }
+  }, [UID]);
 
   return (
-    <UserContext.Provider value={currentUser}>{children}</UserContext.Provider>
+    <UserContext.Provider value={{ currentUser, setCurrentUser }}>
+      {children}
+    </UserContext.Provider>
   );
 }
