@@ -50,11 +50,13 @@ const SignIn = () => {
           onChange={handleInputChange}
           type="password"
         />
-        <Button
-          text="Sign In"
-          onClick={handleLogin}
-          disabled={!isButtonEnabled}
-        />
+        <div className="text-center">
+          <Button
+            text="Sign In"
+            onClick={handleLogin}
+            disabled={!isButtonEnabled}
+          />
+        </div>
       </Container>
     </div>
   );

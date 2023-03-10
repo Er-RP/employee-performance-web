@@ -8,7 +8,7 @@ const initialState = {
   error: null,
 };
 
-const UserContext = React.createContext(initialState);
+const UserContext = React.createContext({ currentUser: initialState });
 
 export function useUser() {
   return useContext(UserContext);
@@ -20,7 +20,6 @@ export function UserProvider({ children }) {
   const getUser = async () => {
     try {
       const res = await get("/users/me");
-      console.log(res);
       if (res && res.success > 0) {
         setCurrentUser({
           loading: false,

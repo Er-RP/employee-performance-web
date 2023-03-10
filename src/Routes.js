@@ -4,6 +4,7 @@ import ForgetPassword from "./components/auth/ForgetPassword";
 import SignIn from "./components/auth/SignIn";
 import AuthRoutes from "./components/private_routes/AuthRoutes";
 import ProtectedRoutes from "./components/private_routes/ProtectedRoutes";
+import ProjectsPage from "./pages/ProjectsPage";
 
 const router = createBrowserRouter([
   {
@@ -11,9 +12,19 @@ const router = createBrowserRouter([
     element: <ProtectedRoutes />,
     children: [
       {
-        path: "/",
-        index: true,
+        path: "",
         element: <App />,
+        children: [
+          {
+            path: "",
+            index: true,
+            element: <div>hiii</div>,
+          },
+          {
+            path: "projects",
+            element: <ProjectsPage />,
+          },
+        ],
       },
     ],
   },

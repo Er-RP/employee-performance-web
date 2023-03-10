@@ -1,9 +1,16 @@
+import { useUser } from "./providers/userProvider";
+import Layout from "./layouts";
+
 const App = () => {
-  return (
-    <div>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
-    </div>
-  );
+  const {
+    currentUser: { user },
+  } = useUser();
+
+  if (user?.role) {
+    return <Layout />;
+  }
+
+  return <>OOPS</>;
 };
 
 export default App;
