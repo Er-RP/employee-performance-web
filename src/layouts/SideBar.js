@@ -32,7 +32,7 @@ const SideBar = (props) => {
           },
         }}
       >
-        <SideDrawer />
+        <SideDrawer onClose={onClose} />
       </Drawer>
       <Drawer
         variant="persistent"
