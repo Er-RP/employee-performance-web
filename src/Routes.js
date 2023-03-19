@@ -4,6 +4,7 @@ import ForgetPassword from "./components/auth/ForgetPassword";
 import SignIn from "./components/auth/SignIn";
 import AuthRoutes from "./components/private_routes/AuthRoutes";
 import ProtectedRoutes from "./components/private_routes/ProtectedRoutes";
+import ProfilePage from "./pages/ProfilePage";
 import ProjectsPage from "./pages/ProjectsPage";
 
 const router = createBrowserRouter([
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
           {
             path: "projects",
             element: <ProjectsPage />,
+          },
+          {
+            path: "profile",
+            element: <ProfilePage />,
           },
         ],
       },
