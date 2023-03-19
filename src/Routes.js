@@ -6,6 +6,7 @@ import AuthRoutes from "./components/private_routes/AuthRoutes";
 import ProtectedRoutes from "./components/private_routes/ProtectedRoutes";
 import ProfilePage from "./pages/ProfilePage";
 import ProjectsPage from "./pages/ProjectsPage";
+import TasksPage from "./pages/TasksPage";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
           {
             path: "projects",
             element: <ProjectsPage />,
+          },
+          {
+            path: "tasks",
+            element: <TasksPage />,
           },
           {
             path: "profile",
