@@ -26,11 +26,11 @@ const router = createBrowserRouter([
           {
             path: "projects",
             element: <ProjectsPage />,
-            // loader: async (props) => {
-            //   return get("/project")
-            //     .then((res) => res)
-            //     .catch((err) => err);
-            // },
+            loader: async (props) => {
+              return get("/project")
+                .then((res) => res)
+                .catch((err) => err);
+            },
           },
           {
             path: "tasks",
