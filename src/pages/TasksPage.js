@@ -1,7 +1,15 @@
-import React from "react";
+import EmployeeTask from "../components/tasks/EmployeeTask";
+import withRole from "../helpers/hoc/withRole";
 
-const TasksPage = () => {
-  return <div>TasksPage</div>;
+const ROLES = {
+  EMPLOYEE: <EmployeeTask />,
+  MANAGER: <>Manager</>,
+  HR: <>HRRRR</>,
 };
 
-export default TasksPage;
+const TasksPage = ({ user }) => {
+  const role = user?.role;
+  return ROLES[role];
+};
+
+export default withRole(TasksPage);
