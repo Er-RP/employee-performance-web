@@ -36,7 +36,7 @@ const Layout = () => {
             width: "100%",
             borderRadius: 1,
             px: 0.5,
-            height: "100%",
+            // height: "100%",
           }}
         >
           <Outlet />
