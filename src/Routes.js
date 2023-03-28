@@ -6,6 +6,7 @@ import AuthRoutes from "./components/private_routes/AuthRoutes";
 import ProtectedRoutes from "./components/private_routes/ProtectedRoutes";
 import { get } from "./network/api";
 import ProfilePage from "./pages/ProfilePage";
+import ProjectDetailsPage from "./pages/ProjectDetailsPage";
 import ProjectsPage from "./pages/ProjectsPage";
 import TasksPage from "./pages/TasksPage";
 
@@ -30,7 +31,13 @@ const router = createBrowserRouter([
               return get("/project")
                 .then((res) => res)
                 .catch((err) => err);
-            },
+            }
+          
+          },
+          {
+            path: "projects/:id",
+            element: <ProjectDetailsPage/>,
+          
           },
           {
             path: "tasks",
