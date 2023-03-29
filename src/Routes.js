@@ -4,7 +4,12 @@ import ForgetPassword from "./components/auth/ForgetPassword";
 import SignIn from "./components/auth/SignIn";
 import AuthRoutes from "./components/private_routes/AuthRoutes";
 import ProtectedRoutes from "./components/private_routes/ProtectedRoutes";
+import TaskDetails from "./components/tasks/TaskDetails";
+import { get } from "./network/api";
+import ProfilePage from "./pages/ProfilePage";
+import ProjectDetailsPage from "./pages/ProjectDetailsPage";
 import ProjectsPage from "./pages/ProjectsPage";
+import TasksPage from "./pages/TasksPage";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +28,29 @@ const router = createBrowserRouter([
           {
             path: "projects",
             element: <ProjectsPage />,
+            loader: async (props) => {
+              return get("/project")
+                .then((res) => res)
+                .catch((err) => err);
+            }
+          
+          },
+          {
+            path: "projects/:id",
+            element: <ProjectDetailsPage/>,
+          
+          },
+          {
+            path: "tasks",
+            element: <TasksPage />,
+          },
+          {
+            path: "tasks/:id",
+            element: <TaskDetails />,
+          },
+          {
+            path: "profile",
+            element: <ProfilePage />,
           },
         ],
       },

@@ -12,24 +12,24 @@ axiosInstance.interceptors.response.use((response) => {
 
 export async function get(url, config = {}) {
   return await axiosInstance
-    .get(url, { ...config })
+    .get(url, { ...config, credentials: "include" })
     .then((response) => response.data);
 }
 
 export async function post(url, data, config = {}) {
   return axiosInstance
-    .post(url, { ...data }, { ...config })
+    .post(url, { ...data }, { ...config, credentials: "include" })
     .then((response) => response.data);
 }
 
 export async function put(url, data, config = {}) {
   return axiosInstance
-    .put(url, { ...data }, { ...config })
+    .put(url, { ...data }, { ...config, credentials: "include" })
     .then((response) => response.data);
 }
 
 export async function del(url, config = {}) {
   return await axiosInstance
-    .delete(url, { ...config })
+    .delete(url, { ...config, credentials: "include" })
     .then((response) => response.data);
 }

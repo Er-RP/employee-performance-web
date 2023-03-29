@@ -1,6 +1,6 @@
 import { AppBar, Box, IconButton, Toolbar } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-// import LOGO from "../../assets/images/LOGO.svg";
+import LOGO from "../assets/images/logo.png";
 
 const TopBar = ({ onClick }) => {
   return (
@@ -22,22 +22,10 @@ const TopBar = ({ onClick }) => {
           boxShadow: "none",
           alignItems: "center",
           justifyContent: "space-between",
-          borderBottom: "1px solid red",
+          // borderBottom: "1px solid red",
         }}
       >
-        <img src={""} alt="logo " style={{ height: "38px" }} />
-        <IconButton
-          color="inherit"
-          aria-label="open drawer"
-          edge="start"
-          onClick={onClick}
-          sx={{
-            mr: 2,
-            // display: { md: "none" }
-          }}
-        >
-          <MenuIcon />
-        </IconButton>
+        <img src={LOGO} alt="G" style={{ height: "38px" }} />
         <IconButton
           color="primary"
           aria-label="open drawer"
