@@ -1,5 +1,8 @@
 export const NavItems = [
   {
+    name: "Divider",
+  },
+  {
     name: "Dashboard",
     path: "/",
   },

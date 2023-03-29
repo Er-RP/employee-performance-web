@@ -22,7 +22,7 @@ const TopBar = ({ onClick }) => {
           boxShadow: "none",
           alignItems: "center",
           justifyContent: "space-between",
-          borderBottom: "1px solid red",
+          // borderBottom: "1px solid red",
         }}
       >
         <img src={LOGO} alt="G" style={{ height: "38px" }} />
