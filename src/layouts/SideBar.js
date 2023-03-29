@@ -32,7 +32,7 @@ const SideBar = (props) => {
           },
         }}
       >
-        <SideDrawer onClose={onClose} />
+        <SideDrawer />
       </Drawer>
       <Drawer
         variant="persistent"
@@ -41,7 +41,9 @@ const SideBar = (props) => {
           "& .MuiDrawer-paper": {
             boxSizing: "border-box",
             width: DRAWER_WIDTH,
-            borderRight: "1px solid red",
+            // borderRight: "none",
+            marginY: "2vh",
+            maxHeight: "96vh",
             boxShadow: "0px -9px 9px -3px rgba(251,251,251,0.74)",
           },
         }}

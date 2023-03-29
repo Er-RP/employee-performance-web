@@ -4,17 +4,35 @@ import {
   List,
   ListItem,
   ListItemButton,
-  ListItemIcon,
   ListItemText,
   useTheme,
 } from "@mui/material";
-import { NavLink } from "react-router-dom";
-import MenuIcon from "@mui/icons-material/Menu";
+import { NavLink, useNavigate } from "react-router-dom";
+import LogoutIcon from "@mui/icons-material/Logout";
 import { NavItems } from "./NavItems";
 import LOGO from "../assets/images/logo.png";
+import { get } from "../network/api";
+import { RIL } from "../utils/localStorage";
+import { useUser } from "../providers/userProvider";
 
-const SideDrawer = ({ onClose = () => null }) => {
+const SideDrawer = () => {
   const theme = useTheme();
+  const { setCurrentUser } = useUser();
+  const navigate = useNavigate();
+  const handleLogout = async () => {
+    const res = await get("/auth/logout");
+    if (res?.success) {
+      setCurrentUser({
+        loading: false,
+        user: null,
+        error: null,
+      });
+      RIL("UID");
+      navigate("/auth");
+    } else {
+      alert("Oops! Something went wrong");
+    }
+  };
   return (
     <List sx={{ mx: 1 }}>
       <ListItem
@@ -26,15 +44,15 @@ const SideDrawer = ({ onClose = () => null }) => {
       >
         <img src={LOGO} alt="G" style={{ height: "38px" }} />
         <IconButton
-          color="primary"
-          aria-label="open drawer"
+          color="error"
+          aria-label="logout"
           edge="start"
-          onClick={onClose}
+          onClick={handleLogout}
           sx={{
-            display: { xs: "block", md: "none" },
+            display: { xs: "block" },
           }}
         >
-          <MenuIcon />
+          <LogoutIcon />
         </IconButton>
       </ListItem>
       {NavItems.map((item, i) => {
