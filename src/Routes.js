@@ -4,6 +4,7 @@ import ForgetPassword from "./components/auth/ForgetPassword";
 import SignIn from "./components/auth/SignIn";
 import AuthRoutes from "./components/private_routes/AuthRoutes";
 import ProtectedRoutes from "./components/private_routes/ProtectedRoutes";
+import TaskDetails from "./components/tasks/TaskDetails";
 import { get } from "./network/api";
 import ProfilePage from "./pages/ProfilePage";
 import ProjectDetailsPage from "./pages/ProjectDetailsPage";
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
           {
             path: "tasks",
             element: <TasksPage />,
+          },
+          {
+            path: "tasks/:id",
+            element: <TaskDetails />,
           },
           {
             path: "profile",
