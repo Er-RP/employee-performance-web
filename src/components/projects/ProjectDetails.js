@@ -16,25 +16,24 @@ const ProjectDetails = () => {
   const params = useParams();
   const projectId = params;
   const [projectData, setProjectData] = useState();
+  const [tasks, setTasks] = useState([]);
   const [sortedBy, setSortedBy] = useState("name");
 
   const GetProjectById = async () => {
     const res = await get(`/project/${projectId?.id}`);
     if (res?.success) {
       setProjectData(res?.project);
+      const refinedTasks = res?.project?.tasks?.map((t) => {
+        const fullName = t?.assignee?.fullName;
+        return { ...t, assignee: fullName };
+      });
+      setTasks(refinedTasks);
     }
   };
 
   useEffect(() => {
     GetProjectById();
   }, []);
-
-  const [tasks, setTasks] = useState([
-    { id: 1, name: "Task 1", assignee: "John Doe", status: "In progress" },
-    { id: 2, name: "Task 2", assignee: "Jane Smith", status: "Completed" },
-    { id: 3, name: "Task 3", assignee: "Bob Johnson", status: "Pending" },
-  ]);
-
   const sortByColumn = (column) => {
     if (column === sortedBy) {
       tasks.reverse();
@@ -70,7 +69,9 @@ const ProjectDetails = () => {
           <div className="text-gray-600 mb-4">
             <span className="font-bold">Members:</span>{" "}
             {projectData?.members?.map((member, i) => (
-              <span key={i}>{member?.fullName}, </span>
+              <span key={i} className="">
+                {member?.fullName},{" "}
+              </span>
             ))}
           </div>
         </div>

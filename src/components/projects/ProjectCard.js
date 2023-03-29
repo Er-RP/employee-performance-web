@@ -5,28 +5,33 @@ import { useNavigate } from "react-router-dom";
 
 const ProjectCard = ({ project }) => {
   const { name, description, manager, members, duration } = project;
-  const navigate = useNavigate()
-  // console.log("project :", project);
+  const navigate = useNavigate();
 
   const ProjectDetails = (project) => {
-    navigate(`/projects/${project?.id}`)
-  }
+    navigate(`/projects/${project?.id}`);
+  };
   return (
     <Box px={2}>
       <Card sx={{ maxWidth: 355 }}>
         <div className=" border-2  h-48">
-          <CardContent  onClick={()=>{ProjectDetails(project)}} style={{cursor:"pointer"}} >
-            <div className="bg-white   pl-2 rounded-sm  " >
+          <CardContent
+            onClick={() => {
+              ProjectDetails(project);
+            }}
+            style={{ cursor: "pointer" }}
+          >
+            <div className="bg-white   pl-2 rounded-sm  ">
               <div className="text-secondary-main">
                 {" "}
                 <Typography variant="h5" component="div">
                   {name}
                 </Typography>
               </div>{" "}
-              <div title={description}
+              <div
+                title={description}
                 style={{
                   width: "100%",
-                  height:" 52px",
+                  height: " 52px",
                   overflow: "hidden",
                   textOverflow: "ellipsis",
                 }}
