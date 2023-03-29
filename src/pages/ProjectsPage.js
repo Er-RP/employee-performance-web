@@ -15,6 +15,8 @@ const initialState = {
 };
 
 const ProjectsPage = ({ user }) => {
+  const ROLE = user?.role;
+  const isRoleOk = Boolean(ROLE) && Boolean(ROLE !== "EMPLOYEE");
   const projectData = useLoaderData();
   const [projects, setProjects] = useState(initialState);
   const [usersData, setUsersData] = useState();
@@ -46,7 +48,7 @@ const ProjectsPage = ({ user }) => {
   };
 
   useEffect(() => {
-    getAllUsers();
+    if (isRoleOk) getAllUsers();
   }, []);
 
   if (loading) {
@@ -70,9 +72,11 @@ const ProjectsPage = ({ user }) => {
             PROJECTS
           </Typography>
         </div>
-        <div className="flex justify-center py-2 md:py-0">
-          <CreateProject usersData={usersData} setProjects={setProjects} />
-        </div>
+        {isRoleOk && (
+          <div className="flex justify-center py-2 md:py-0">
+            <CreateProject usersData={usersData} setProjects={setProjects} />
+          </div>
+        )}
       </div>
       <Grid container spacing={2}>
         {" "}
