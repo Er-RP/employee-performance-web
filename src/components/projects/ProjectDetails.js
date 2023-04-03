@@ -12,11 +12,13 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { get } from "../../network/api";
 import CreateTask from "../tasks/CreateTask";
+import UpdateProject from "./UpdateProject";
 
 const ProjectDetails = () => {
   const params = useParams();
   const projectId = params;
   const navigate = useNavigate();
+  const [usersData, setUsersData] = useState();
   const [projectData, setProjectData] = useState();
   const [tasks, setTasks] = useState([]);
   const [data, setData] = useState("");
@@ -34,9 +36,7 @@ const ProjectDetails = () => {
     }
   };
 
-  useEffect(() => {
-    GetProjectById();
-  }, []);
+
 
   const sortByColumn = (column) => {
     if (column === sortedBy) {
@@ -58,13 +58,35 @@ const ProjectDetails = () => {
     setData(task?.id);
     navigate(`/tasks/${task?.id}`);
   };
+  
+  const getAllUsers = async () => {
+    try {
+      const res = await get("/users");
+      if (res?.success) {
+        setUsersData(res?.users);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    GetProjectById();
+    getAllUsers();
+  }, []);
   return (
     <div>
       <div className="flex flex-col items-center py-10 px-2">
         <div className="bg-white rounded-lg shadow-lg p-10 w-full ">
-          <h1 className="text-2xl font-bold text-gray-800 mb-6">
-            {projectData?.name}
-          </h1>
+          <div className="flex justify-between">
+            <div>
+              {" "}
+              <h1 className="text-2xl font-bold text-gray-800 mb-6">
+                {projectData?.name}
+              </h1>
+            </div>
+            <div><UpdateProject projectData={projectData} usersData={usersData} GetProjectById={GetProjectById}/></div>
+          </div>
           <p className="text-gray-600 mb-4">{projectData?.description}</p>
           <div className="flex justify-between items-center text-gray-600 mb-4">
             <span>{projectData?.duration} days</span>
