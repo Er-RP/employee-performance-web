@@ -10,6 +10,7 @@ import ProfilePage from "./pages/ProfilePage";
 import ProjectDetailsPage from "./pages/ProjectDetailsPage";
 import ProjectsPage from "./pages/ProjectsPage";
 import TasksPage from "./pages/TasksPage";
+import DashboardPage from "./pages/DashboardPage";
 
 const router = createBrowserRouter([
   {
@@ -23,7 +24,7 @@ const router = createBrowserRouter([
           {
             path: "",
             index: true,
-            element: <div>hiii</div>,
+            element: <DashboardPage />,
           },
           {
             path: "projects",
@@ -32,17 +33,20 @@ const router = createBrowserRouter([
               return get("/project")
                 .then((res) => res)
                 .catch((err) => err);
-            }
-          
+            },
           },
           {
             path: "projects/:id",
-            element: <ProjectDetailsPage/>,
-          
+            element: <ProjectDetailsPage />,
           },
           {
             path: "tasks",
             element: <TasksPage />,
+            loader: async (props) => {
+              return get("/tasks")
+                .then((res) => res)
+                .catch((err) => err);
+            },
           },
           {
             path: "tasks/:id",
