@@ -66,9 +66,12 @@ const ProjectDetails = () => {
             {projectData?.name}
           </h1>
           <p className="text-gray-600 mb-4">{projectData?.description}</p>
-          <div className="flex justify-between items-center text-gray-600 mb-4">
-            <span>{projectData?.duration} days</span>
-            <span>{projectData?.hoursTaken} hours</span>
+          {/* <div className="flex justify-between items-center text-gray-600 mb-4">
+            <span>{projectData?.duration} hours</span>
+          </div> */}
+          <div className="text-gray-600 mb-4">
+            <span className="font-bold">Duration:</span>
+            {projectData?.duration} hours
           </div>
           <div className="text-gray-600 mb-4">
             <span className="font-bold">Manager:</span>{" "}
