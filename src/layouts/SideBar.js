@@ -42,8 +42,8 @@ const SideBar = (props) => {
             boxSizing: "border-box",
             width: DRAWER_WIDTH,
             // borderRight: "none",
-            marginY: "2vh",
-            maxHeight: "96vh",
+            // marginY: "2vh",
+            maxHeight: "100vh",
             boxShadow: "0px -9px 9px -3px rgba(251,251,251,0.74)",
           },
         }}

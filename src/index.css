@@ -19,6 +19,7 @@
 body {
   max-width: 1900px;
   margin: 0 auto;
+  background-color: #ffad3321;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
