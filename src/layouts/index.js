@@ -18,7 +18,7 @@ const Layout = () => {
         component="main"
         sx={{
           flexGrow: 1,
-          bgcolor: "background.default",
+          bgcolor: "#ffad3321",
           color: "text.primary",
           p: 0.5,
           width: {
@@ -27,7 +27,7 @@ const Layout = () => {
           ml: { md: mobileOpen ? `${DRAWER_WIDTH}px` : "auto" },
           mr: "auto",
           maxWidth: 1900,
-          minHeight: `calc(100vh - ${60}px)`,
+          minHeight: `calc(100vh)`,
         }}
       >
         <Box

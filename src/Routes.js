@@ -25,6 +25,11 @@ const router = createBrowserRouter([
             path: "",
             index: true,
             element: <DashboardPage />,
+            loader: async (props) => {
+              return get("/dashboard")
+                .then((res) => res)
+                .catch((err) => err);
+            },
           },
           {
             path: "projects",
