@@ -27,15 +27,15 @@ const initialFormValues = {
   isCompleted: false,
 };
 
-const UpdateProject = ({ usersData = [], projectData, GetProjectById }) => {
+const UpdateProject = ({ usersData = [], projectData, setProjectData }) => {
   const { values, setValues, handleInputChange } = useForm(initialFormValues);
   const [open, setOpen] = useState(false);
   const UpdateProjectt = async () => {
     try {
       const res = await put(`/project/${projectData?.id}`, values);
       if (res?.success) {
-        await GetProjectById();
-        setOpen(false)
+        setProjectData(res?.project);
+        setOpen(false);
       }
     } catch (error) {
       console.log("Error updating project:", error);
@@ -189,7 +189,7 @@ const UpdateProject = ({ usersData = [], projectData, GetProjectById }) => {
               onClick={UpdateProjectt}
               disabled={!isButtonEnabled}
             >
-              Create
+              Update
             </Button>
             <Button
               variant="contained"
