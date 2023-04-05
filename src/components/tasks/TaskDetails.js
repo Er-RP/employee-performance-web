@@ -2,6 +2,7 @@ import { Grid, Paper, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { get } from "../../network/api";
+import UpdateTask from "./UpdateTask";
 
 const TaskDetails = () => {
   const params = useParams();
@@ -32,20 +33,26 @@ const TaskDetails = () => {
         return "border-black";
     }
   };
-  console.log("Task :", taskData);
   return (
     <div className="p-3">
-      <Typography
-        style={{
-          display: "flex",
-          justifyContent: "start",
-          fontWeight: "bolder",
-          fontSize: 30,
-        }}
-        py={1}
-      >
-        TASK
-      </Typography>{" "}
+      <div className="flex justify-between">
+        <div>
+          <Typography
+            style={{
+              display: "flex",
+              justifyContent: "start",
+              fontWeight: "bolder",
+              fontSize: 30,
+            }}
+            py={1}
+          >
+            TASK
+          </Typography>
+        </div>
+        <div>
+          <UpdateTask taskData={taskData} setTaskData={setTaskData} />
+        </div>
+      </div>
       <div className=" p-4 rounded-lg shadow-md ">
         <div className="grid md:grid-cols-2 gap-4">
           <div
@@ -81,6 +88,16 @@ const TaskDetails = () => {
                 {taskData?.description}
               </div>
             </div>
+            {taskData?.actualTime >= 0 && (
+              <div className="py-4 flex gap-x-1">
+                <div className="text-xl font-bold text-gray-600 mb-1 ">
+                  Hours Taken:
+                </div>
+                <div className="text-lg font-semibold text-gray-500 pt-0.5">
+                  {taskData?.actualTime}
+                </div>
+              </div>
+            )}
           </div>
 
           <div

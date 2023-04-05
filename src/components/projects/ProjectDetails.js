@@ -36,8 +36,6 @@ const ProjectDetails = () => {
     }
   };
 
-
-
   const sortByColumn = (column) => {
     if (column === sortedBy) {
       tasks.reverse();
@@ -58,7 +56,7 @@ const ProjectDetails = () => {
     setData(task?.id);
     navigate(`/tasks/${task?.id}`);
   };
-  
+
   const getAllUsers = async () => {
     try {
       const res = await get("/users");
@@ -85,7 +83,13 @@ const ProjectDetails = () => {
                 {projectData?.name}
               </h1>
             </div>
-            <div><UpdateProject projectData={projectData} usersData={usersData} GetProjectById={GetProjectById}/></div>
+            <div>
+              <UpdateProject
+                projectData={projectData}
+                usersData={usersData}
+                setProjectData={setProjectData}
+              />
+            </div>
           </div>
           <p className="text-gray-600 mb-4">{projectData?.description}</p>
           {/* <div className="flex justify-between items-center text-gray-600 mb-4">
